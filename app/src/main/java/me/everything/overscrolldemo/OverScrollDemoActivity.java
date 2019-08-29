@@ -81,7 +81,7 @@ public class OverScrollDemoActivity extends AppCompatActivity
                 replaceMainFragment(new ScrollViewDemoFragment(), R.string.scroll_view_demo_title);
                 break;
             case R.id.drawer_item_viewpager_demo:
-                replaceMainFragment(new ViewPagerDemoFragment(),R.string.viewpager_demo_title);
+                replaceMainFragment(new ViewPagerDemoFragment(), R.string.viewpager_demo_title);
                 break;
             case R.id.drawer_item_nested_scrollview_demo:
                 replaceMainFragment(new NestedScrollViewDemoFragment(), R.string.nested_scrollview_demo_title);
