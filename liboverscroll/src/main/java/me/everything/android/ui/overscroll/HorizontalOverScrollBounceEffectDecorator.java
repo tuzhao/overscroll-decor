@@ -4,6 +4,7 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import me.everything.android.ui.overscroll.adapters.IOverScrollDecoratorAdapter;
+import me.everything.android.ui.overscroll.util.Logger;
 
 /**
  * A concrete implementation of {@link OverScrollBounceEffectDecoratorBase} for a horizontal orientation.
@@ -11,6 +12,8 @@ import me.everything.android.ui.overscroll.adapters.IOverScrollDecoratorAdapter;
  * @author amit
  */
 public class HorizontalOverScrollBounceEffectDecorator extends OverScrollBounceEffectDecoratorBase {
+
+    private static final String TAG = "HOSBED";
 
     protected static class MotionAttributesHorizontal extends MotionAttributes {
 
@@ -32,7 +35,7 @@ public class HorizontalOverScrollBounceEffectDecorator extends OverScrollBounceE
             mAbsOffset = view.getTranslationX();
             mDeltaOffset = dx;
             mDir = mDeltaOffset > 0;
-
+            log("mDir: " + mDir);
             return true;
         }
     }
@@ -64,12 +67,13 @@ public class HorizontalOverScrollBounceEffectDecorator extends OverScrollBounceE
 
     /**
      * C'tor, creating the effect with explicit arguments.
-     * @param viewAdapter The view's encapsulation.
+     *
+     * @param viewAdapter       The view's encapsulation.
      * @param touchDragRatioFwd Ratio of touch distance to actual drag distance when in 'forward' direction.
      * @param touchDragRatioBck Ratio of touch distance to actual drag distance when in 'backward'
      *                          direction (opposite to initial one).
-     * @param decelerateFactor Deceleration factor used when decelerating the motion to create the
-     *                         bounce-back effect.
+     * @param decelerateFactor  Deceleration factor used when decelerating the motion to create the
+     *                          bounce-back effect.
      */
     public HorizontalOverScrollBounceEffectDecorator(IOverScrollDecoratorAdapter viewAdapter,
                                                      float touchDragRatioFwd, float touchDragRatioBck, float decelerateFactor) {
@@ -96,4 +100,9 @@ public class HorizontalOverScrollBounceEffectDecorator extends OverScrollBounceE
         view.setTranslationX(offset);
         event.offsetLocation(offset - event.getX(0), 0f);
     }
+
+    private static void log(String msg) {
+        Logger.d(TAG, msg);
+    }
+
 }
